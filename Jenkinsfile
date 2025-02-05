@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         AWS_REGION = 'us-east-1'
-        SONARQUBE_URL = "https://sonarcloud.io"
+        SONARQUBE_URL = "http://localhost:9000"
         SONAR_SCANNER_HOME = "/opt/sonar-scanner"
         TRUFFLEHOG_PATH = "/usr/local/bin/trufflehog3"
         JIRA_SITE = "https://daquietstorm22.atlassian.net/"
@@ -38,7 +38,6 @@ pipeline {
                         def scanStatus = sh(script: '''
                             ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                             -Dsonar.projectKey=tiqsclass6_jenkins-test3 \
-                            -Dsonar.organization=TIQS \
                             -Dsonar.host.url=${SONARQUBE_URL} \
                             -Dsonar.login=''' + SONAR_TOKEN, returnStatus: true)
 
